@@ -18,3 +18,4 @@
 | 12.11.2026 | OpenCanopy, GoldenGate, eigenes Linux-Symbol, schwarzer Hintergrund | |
 | 12.11.2026 | itlwm, SMCDellSensors, btrfs entfernt (59 → 43 MB) | EFI-Partition zu klein |
 | 12.11.2026 | `PickerAttributes 151 → 147` | Linux stand als „Other OS“ im Menü |
+| 17.11.2026 | Fn-Helligkeitstasten und Bluetooth bestätigt | |

@@ -21,9 +21,9 @@ Stand: 17.11.2026.
 | Touchpad mit Gesten | ✅ läuft | VoodooI2C Nightly `0271bbd` + SSDT-XOSI |
 | Tastatur | ✅ | VoodooPS2 |
 | Helligkeit (Regler) | ✅ | SSDT-PNLF (UID 19 für WhateverXe) |
-| Helligkeit (Fn-Tasten) | ⚠️ Fix eingebaut, noch nicht bestätigt | SSDT-BRT6 + exakter XOSI-Patch, siehe [Helligkeitstasten](#helligkeitstasten) |
+| Helligkeit (Fn-Tasten) | ✅ läuft (bestätigt 17.11.) | SSDT-BRT6 + exakter XOSI-Patch, siehe [Helligkeitstasten](#helligkeitstasten) |
 | USB-Map | ⚠️ eingebaut, noch nicht bestätigt | UTBMap.kext aus den ACPI-Tabellen |
-| Bluetooth | ⚠️ funktioniert, **Systemeinstellungen → Bluetooth kann das System einfrieren** | offen, siehe [Bekannte Probleme](#bekannte-probleme) |
+| Bluetooth | ✅ läuft (bestätigt 17.11.) | IntelBluetoothFirmware/IntelBTPatcher 2.5.1, Port HS10 in der USB-Map als intern |
 | Internes Mikrofon | ❓ nicht getestet | hängt laut NHLT am Realtek-Codec, nicht am DSP, siehe [Mikrofon](#mikrofon) |
 | Linux im OpenCore-Menü | ✅ wird angezeigt | OpenLinuxBoot + ext4 |
 | Boot-Menü grafisch | ✅ | OpenCanopy, Theme GoldenGate, eigenes Linux-Symbol |
@@ -141,7 +141,7 @@ Ohne WLAN im Installer: Netzwerkkabel (IntelMausi ist aktiv).
 Dell meldet Fn-Helligkeit so: EC-Ereignis `_Q66` → `NEVT` → `SMIE` → `SMEE` → `EV6` → `\_SB.PC00.GFX0.BRT6` → `Notify(LCD, 0x86/0x87)`.
 `SMEE` prüft `\_SB.OSID() >= 0x20`, das gibt es nur mit XOSI. SSDT-BRT6 leitet unter macOS direkt als Tastencodes an `PS2K` weiter.
 
-Funktioniert es nicht: Ordner `Diagnose` verwenden (siehe [Diagnose/LIESMICH.md](Diagnose/LIESMICH.md)). In TextEdit erscheinen dann Buchstaben für jede erreichte Station: `q` = `_Q66`, `s` = `SMEE`, `d` = OSID ok, `b` = `BRT6`.
+Läuft (bestätigt 17.11.). Falls es nach einem BIOS- oder macOS-Update ausfällt: Ordner `Diagnose` verwenden (siehe [Diagnose/LIESMICH.md](Diagnose/LIESMICH.md)). In TextEdit erscheinen dann Buchstaben für jede erreichte Station: `q` = `_Q66`, `s` = `SMEE`, `d` = OSID ok, `b` = `BRT6`.
 
 ## Mikrofon
 Laut ACPI-Tabelle **NHLT** hat der 5420 **keine** Mikrofone am Intel-Audio-DSP (nur zwei Bluetooth-SSP-Endpunkte). DSP-Treiber wie TGLDmic oder HP250Dmic helfen hier daher nicht.
@@ -149,7 +149,7 @@ Das interne Mikrofon hängt vermutlich am Digital-Mic-Eingang des ALC236 (Knoten
 Test: Systemeinstellungen → Ton → Eingang. Falls stumm, `alcid=` nacheinander auf `69` (Dell Ice Lake), `68` (Vostro 5401), `54` (Inspiron 5488) ändern und Lautsprecher/Kopfhörer mitprüfen.
 
 ## Bekannte Probleme
-- **Bluetooth-Einstellungen frieren das System ein** (WindowServer-Watchdog-Panic nach 120 s). Im Log keine GPU-Fehler, aber `XPC_ERROR_CONNECTION_INTERRUPTED` beim Bluetooth-Dienst → Verdacht auf IntelBluetoothFirmware/IntelBTPatcher. Test: einmal ohne diese beiden Kexts, einmal mit `-wexoff` die Seite öffnen. Geräte bis dahin über das Kontrollzentrum verbinden.
+- **Bluetooth-Einstellungen froren am 11.11. das System ein** (WindowServer-Watchdog-Panic nach 120 s), vor USB-Map und Helligkeits-Fix. Mit der aktuellen EFI funktioniert Bluetooth; falls das Einfrieren wiederkommt: Im Log keine GPU-Fehler, aber `XPC_ERROR_CONNECTION_INTERRUPTED` beim Bluetooth-Dienst → Verdacht auf IntelBluetoothFirmware/IntelBTPatcher. Test: einmal ohne diese beiden Kexts, einmal mit `-wexoff` die Seite öffnen. Geräte bis dahin über das Kontrollzentrum verbinden.
 - **Ruhezustand** ist mit WhateverXe nicht validiert.
 - **USB-C-Monitor an-/abstecken** kann einfrieren (WhateverXe, bekannt).
 - **WLAN-Treiber** AirportItlwm-Tahoe ist eine Alpha: kein WPA3-only, kein AirDrop. `itlwm.kext` ist aus Platzgründen nicht mehr enthalten.
