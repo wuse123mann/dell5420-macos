@@ -149,7 +149,6 @@ Das interne Mikrofon hängt vermutlich am Digital-Mic-Eingang des ALC236 (Knoten
 Test: Systemeinstellungen → Ton → Eingang. Falls stumm, `alcid=` nacheinander auf `69` (Dell Ice Lake), `68` (Vostro 5401), `54` (Inspiron 5488) ändern und Lautsprecher/Kopfhörer mitprüfen.
 
 ## Bekannte Probleme
-- **Bluetooth-Einstellungen froren am 11.11. das System ein** (WindowServer-Watchdog-Panic nach 120 s), vor USB-Map und Helligkeits-Fix. Mit der aktuellen EFI funktioniert Bluetooth; falls das Einfrieren wiederkommt: Im Log keine GPU-Fehler, aber `XPC_ERROR_CONNECTION_INTERRUPTED` beim Bluetooth-Dienst → Verdacht auf IntelBluetoothFirmware/IntelBTPatcher. Test: einmal ohne diese beiden Kexts, einmal mit `-wexoff` die Seite öffnen. Geräte bis dahin über das Kontrollzentrum verbinden.
 - **Ruhezustand** ist mit WhateverXe nicht validiert.
 - **USB-C-Monitor an-/abstecken** kann einfrieren (WhateverXe, bekannt).
 - **WLAN-Treiber** AirportItlwm-Tahoe ist eine Alpha: kein WPA3-only, kein AirDrop. `itlwm.kext` ist aus Platzgründen nicht mehr enthalten.
