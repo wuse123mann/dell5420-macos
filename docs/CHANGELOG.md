@@ -20,3 +20,4 @@
 | 12.11.2026 | `PickerAttributes 151 → 147` | Linux stand als „Other OS“ im Menü |
 | 17.11.2026 | Fn-Helligkeitstasten und Bluetooth bestätigt | |
 | 17.11.2026 | Einfrieren der Bluetooth-Einstellungen nicht mehr aufgetreten, aus „Bekannte Probleme“ entfernt | |
+| 17.11.2026 | SMBIOS im Repo durch neu erzeugte Werte ersetzt | echte Seriennummer nicht im Repo |

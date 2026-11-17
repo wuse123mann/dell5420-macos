@@ -3,10 +3,6 @@
 OpenCore-EFI für ein **Dell Latitude 5420** (Tiger Lake, i7-1185G7, Iris Xe `8086:9A49`) mit macOS 26 Tahoe, parallel zu Windows und Ubuntu.
 Stand: 17.11.2026.
 
-> [!WARNING]
-> Die `config.plist` enthält die **echten SMBIOS-Daten** dieses Geräts (Seriennummer, MLB, UUID, ROM).
-> Das Repository ist privat. Bevor es öffentlich gemacht oder die EFI weitergegeben wird, diese Werte durch eigene ersetzen (`macserial -m MacBookPro16,2 -g`), sonst teilen sich zwei Geräte eine Apple-Identität.
-
 ![Boot-Menü (ungefähre Vorschau)](docs/OpenCore-Vorschau.png)
 
 ## Status
@@ -58,7 +54,7 @@ docs/                    Vorschau, Changelog, Komponenten
 
 | Bereich | Einstellung |
 | --- | --- |
-| SMBIOS | MacBookPro16,2 |
+| SMBIOS | MacBookPro16,2 (zufällig erzeugte Seriennummer, für ein eigenes Gerät neu erzeugen: `macserial -m MacBookPro16,2 -g`) |
 | CPU | `Cpuid1Data E5060700…` (Ice Lake), `AppleXcpmCfgLock`, **`AppleXcpmExtraMsrs`** |
 | Booter | `DevirtualiseMmio`, MmioWhitelist `0xC0000000` (PCIe ECAM) und `0xFF000000`, `RebuildAppleMemoryMap`, `SyncRuntimePermissions` |
 | boot-args | `keepsyms=1 debug=0x100 -allow3d -disablegfxfirmware -igfxdvmt alcid=11 revpatch=sbvmm shda-lang=de` |
